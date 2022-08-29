@@ -1,0 +1,52 @@
+td {
+  height: 118px;
+}
+
+.cartImgBox {
+  height: 100%;
+  width: 121px;
+}
+
+.nameBox {
+  width: 239px;
+
+  .name {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.incrementBtn {
+  border: 1px solid black;
+  display: flex;
+  height: 49px;
+  width: 127px;
+
+  .incrementIconBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 35%;
+
+    .incrementIcon {
+      cursor: pointer;
+    }
+  }
+
+  .incrementNumberBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 30%;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+.deletIcon {
+  cursor: pointer;
+  flex-shrink: 0;
+}

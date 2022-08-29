@@ -1,0 +1,52 @@
+.productCard {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  height: 362px;
+  width: 280px;
+  position: relative;
+
+  .productLink {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+  }
+
+  .imageContainer {
+    height: 274px;
+    width: 100%;
+    position: relative;
+  }
+
+  .informationContainer {
+    height: 88px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .nameBox {
+      margin-top: 11px;
+      height: 48px;
+      width: 100%;
+
+      .name {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        color: #000000;
+        margin: 0;
+      }
+    }
+
+    .priceBox {
+      margin-top: 5px;
+      height: 24px;
+      width: 100%;
+    }
+  }
+
+  span.woocommerce-Price-amount:nth-child(even) {
+    opacity: 0.5;
+  }
+}

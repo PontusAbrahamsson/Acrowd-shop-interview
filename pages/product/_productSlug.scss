@@ -1,0 +1,166 @@
+.singleProduct {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 25px;
+
+  .productInfoContainer {
+    margin-top: 120px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .imagesContainer {
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+
+      .featuredImgBox {
+        height: 580px;
+        width: 100%;
+      }
+
+      .imageGalleryContainer {
+        margin-top: 5px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20%, max-content));
+        gap: 5px;
+        width: 100%;
+
+        .galleryImgBox {
+          height: 100%;
+          max-width: 140px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .infoBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 480px;
+      padding-left: 25px;
+
+      .breadcrumbsBox {
+        width: 100%;
+
+        .breadcrumbs {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+
+      .nameBox {
+        margin: 24px 0;
+        width: 100%;
+
+        .name {
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 29px;
+        }
+      }
+
+      .priceBox {
+        width: 100%;
+      }
+
+      .shortDescriptionBox {
+        margin-top: 37px;
+        width: 100%;
+
+        .shortDescription {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          color: #414141;
+        }
+      }
+
+      .cartBtnBox {
+        margin-top: 37px;
+        width: 100%;
+        display: flex;
+
+        .incrementBtn {
+          border: 1px solid black;
+          display: flex;
+          height: 49px;
+          width: 127px;
+
+          .incrementIconBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 35%;
+
+            .incrementIcon {
+              cursor: pointer;
+            }
+          }
+
+          .incrementNumberBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 30%;
+            font-weight: 400;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .relatedProductsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 178px;
+    width: 100%;
+
+    .title {
+      font-weight: 700;
+      font-size: 24px;
+    }
+
+    .relatedProductsRow {
+      display: flex;
+      gap: 20px;
+      margin-top: 44px;
+      margin-bottom: 136px;
+      width: 100%;
+      overflow-x: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .singleProduct {
+    padding: 0 25px;
+
+    .productInfoContainer {
+      flex-direction: column;
+      align-items: center;
+
+      .featuredImgBox {
+        max-width: auto;
+        height: auto;
+      }
+
+      .infoBox {
+        max-width: 580px;
+        padding-left: 0;
+        margin-top: 25px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 676px) {
+  .singleProduct {
+    padding: 0 15px;
+  }
+}

@@ -1,0 +1,32 @@
+.inputComponent {
+  width: 100%;
+
+  .inputTitle {
+    display: block;
+    font-weight: 400;
+    font-size: 14px;
+    color: black;
+    margin-bottom: 8px;
+  }
+
+  .inputBorder {
+    border: 1px solid black;
+    height: 49px;
+    width: 100%;
+
+    .input {
+      padding: 0 22px;
+      height: 100%;
+      width: 100%;
+      font-weight: 400;
+      font-size: 16px;
+    }
+  }
+
+  .errorMsg {
+    margin-top: 8px;
+    font-size: 14px;
+    color: red;
+    font-weight: 400;
+  }
+}

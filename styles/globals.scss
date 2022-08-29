@@ -1,0 +1,15 @@
+//Components
+@import '../componenets/productCard/productCard';
+@import '../componenets/button/button';
+@import '../componenets/cartRow/cartRow';
+@import '../componenets/input/input';
+@import '../componenets/header/header';
+
+//Pages
+@import '../pages/product/productSlug';
+@import '../pages/cart/index';
+@import '../pages/checkout/index';
+@import '../pages/shop/[parentCategory]/[subCategory]/index';
+
+//Default
+@import './default';

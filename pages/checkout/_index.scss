@@ -1,0 +1,108 @@
+.checkout {
+  margin: 0 auto;
+  max-width: 580px;
+  margin-bottom: 100px;
+
+  .checkoutTitleBox {
+    margin-top: 113px;
+    margin-bottom: 77px;
+    width: 100%;
+
+    .checkoutTitle {
+      font-weight: 700;
+      font-size: 24px;
+    }
+  }
+
+  .inptContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .flex {
+      margin-top: 27px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      .flexBox {
+        width: 48%;
+      }
+    }
+  }
+
+  .checkoutTable {
+    align-items: center;
+    background-color: #f6f6f6;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 84px;
+    padding: 0 20px;
+    height: 57px;
+    width: 100%;
+
+    .checkoutItem {
+      font-weight: 400;
+      font-size: 16px;
+    }
+  }
+
+  .productList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    .productItem {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      margin-top: 23px;
+
+      .nameBox {
+        width: 238px;
+
+        .name {
+          font-weight: 400;
+          font-size: 14px;
+        }
+
+        .totalName {
+          font-weight: 700;
+          font-size: 16px;
+        }
+      }
+
+      .price {
+        font-weight: 400;
+        font-size: 16px;
+      }
+
+      .totalPrice {
+        font-weight: 700;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .submitBtnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 86px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .checkout {
+    padding: 0 25px;
+  }
+}
+
+@media screen and (max-width: 676px) {
+  .checkout {
+    padding: 0 15px;
+  }
+}
