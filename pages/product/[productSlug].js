@@ -48,7 +48,7 @@ function SingleProduct({ singleProduct, relatedProducts }) {
     //Make sale price opacity: 0.5
     document.getElementsByClassName('woocommerce-Price-amount')[0].style.opacity = '0.5';
     document.getElementsByClassName('shortDescription')[0].innerHTML = singleProduct[0].short_description;
-  }, []);
+  }, [singleProduct]);
 
   const decrementQuantity = () => {
     if (quantityNumber >= 2) {

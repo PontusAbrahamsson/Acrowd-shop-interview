@@ -25,7 +25,7 @@ function Cart() {
         localStorage.setItem('cart', stringItem);
       }
     }
-  }, [incrementCart]);
+  }, [incrementCart, cart, selectedCartRow]);
 
 
   useEffect(() => {
