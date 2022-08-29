@@ -4,14 +4,11 @@ import Link from "next/dist/client/link";
 function Header() {
   const [cartQuantity, setCartQuantity] = useState();
 
-  if (typeof window !== 'undefined') {
-
-    useEffect(() => {
-      //Get products from cart
-      const getLocalCart = localStorage.getItem('cart');
-      setCartQuantity(JSON.parse(getLocalCart));
-    }, [localStorage.getItem('cart')])
-  }
+  useEffect(() => {
+    //Get products from cart
+    const getLocalCart = localStorage.getItem('cart');
+    setCartQuantity(JSON.parse(getLocalCart));
+  }, [])
 
   return (
     <header>

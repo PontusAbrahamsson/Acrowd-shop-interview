@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
 import ProductCard from '../../../../componenets/productCard/productCard';
-import Link from 'next/dist/client/link';
 import { useRouter } from 'next/router';
 
 

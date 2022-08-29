@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 function CartRow({ name, price, featuredImage, productID, quantity, setRemoveProductID, setIncrementCart }) {
   const [quantityNumber, setQuantityNumber] = useState(quantity);
@@ -26,7 +27,7 @@ function CartRow({ name, price, featuredImage, productID, quantity, setRemovePro
 
       <td>
         <div className="cartImgBox">
-          <img className="imgCover" alt="cart image" src={featuredImage} />
+          <Image layout="fill" priority="true" className="imgCover" alt="cart image" src={featuredImage} />
         </div>
       </td>
       <td>

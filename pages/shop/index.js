@@ -1,9 +1,7 @@
 import React from 'react';
 import Link from 'next/dist/client/link';
 import ProductCard from '../../componenets/productCard/productCard';
-import Button from '../../componenets/button/button';
 import { useRouter } from "next/router";
-import { useState, useEffect } from 'react';
 
 function Shop({ productsData, parentCategories, productLength }) {
   const router = useRouter()

@@ -11,12 +11,14 @@
 
     .imagesContainer {
       max-width: 580px;
+      height: auto;
       display: flex;
       flex-direction: column;
 
       .featuredImgBox {
         height: 580px;
-        width: 100%;
+        width: 580px;
+        position: relative;
       }
 
       .imageGalleryContainer {
@@ -27,8 +29,9 @@
         width: 100%;
 
         .galleryImgBox {
-          height: 100%;
-          max-width: 140px;
+          height: 100px;
+          max-width: 100%;
+          position: relative;
           cursor: pointer;
         }
       }

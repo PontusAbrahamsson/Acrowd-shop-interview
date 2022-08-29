@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../componenets/button/button";
 import ProductCard from "../../componenets/productCard/productCard";
+import Image from "next/image";
 
 function SingleProduct({ singleProduct, relatedProducts }) {
   const [quantityNumber, setQuantityNumber] = useState(1);
@@ -66,14 +67,14 @@ function SingleProduct({ singleProduct, relatedProducts }) {
       <div className="productInfoContainer">
         <div className="imagesContainer">
           <div className="featuredImgBox">
-            <img className="imgCover" src={featuredImage.length <= 0 ? singleProduct[0].images[0].src : featuredImage} alt="Product image" />
+            <Image layout="fill" priority="true" className="imgCover" src={featuredImage.length <= 0 ? singleProduct[0].images[0].src : featuredImage} alt="Product image" />
           </div>
           <div className="imageGalleryContainer">
             {singleProduct[0].images.map((image, index) => {
 
               return (
                 <div key={index} className="galleryImgBox" onClick={() => setFeaturedImage(image.src)} >
-                  <img className="imgCover" src={image.src} />
+                  <Image layout="fill" priority="true" className="imgCover" src={image.src} alt="Product variation image" />
                 </div>
               )
             })}
