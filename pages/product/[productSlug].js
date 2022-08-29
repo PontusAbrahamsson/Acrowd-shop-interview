@@ -9,11 +9,9 @@ function SingleProduct({ singleProduct, relatedProducts }) {
   const [featuredImage, setFeaturedImage] = useState('');
 
   //Reset featured image 
-  if (typeof window !== 'undefined') {
-    useEffect(() => {
-      setFeaturedImage('')
-    }, [window.location.href])
-  }
+  useEffect(() => {
+    setFeaturedImage('')
+  }, [])
 
   useEffect(() => {
     //Get products from cart so we can see if product already exists
@@ -127,7 +125,7 @@ function SingleProduct({ singleProduct, relatedProducts }) {
           {relatedProducts.map((product, index) => {
 
             return (
-              <div className='product' key={index} >
+              <div className='product' key={index} onClick={() => setFeaturedImage('')}>
                 <ProductCard
                   index={index}
                   name={product.name}
