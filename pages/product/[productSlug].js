@@ -7,6 +7,7 @@ function SingleProduct({ singleProduct, relatedProducts }) {
   const [quantityNumber, setQuantityNumber] = useState(1);
   const [cart, setCart] = useState([]);
   const [featuredImage, setFeaturedImage] = useState('');
+  console.log(cart)
 
   //Reset featured image 
   useEffect(() => {
@@ -15,32 +16,41 @@ function SingleProduct({ singleProduct, relatedProducts }) {
 
   useEffect(() => {
     //Get products from cart so we can see if product already exists
-    const localCart = localStorage.getItem('cart');
-    setCart(JSON.parse(localCart));
+    if (localStorage.getItem('cart') === null) {
+      console.log('Local cart is emty')
+    } else {
+      const localCart = localStorage.getItem('cart');
+      setCart(JSON.parse(localCart));
+    }
   }, []);
 
   //Add product to cart
   const addToCart = ({ name, price, featuredImage, productID, quantity }) => {
     const newProduct = []
     newProduct.push({ name, price, featuredImage, productID, quantity });
-    const existingItem = cart.find(product => product.productID == newProduct[0].productID)
 
-    //If product already exists in cart increment quantity else add product
-    if (existingItem) {
-
-      //Finds the array index which id is equal to exsisting product, then increments the quantity with 1
-      for (var i = 0; i < cart.length; i++) {
-        if (cart[i].productID === existingItem.productID) {
-          cart[i].quantity += 1
-        }
-      }
-      const stringItem = JSON.stringify([...cart]);
-      localStorage.setItem('cart', stringItem);
+    if (localStorage.getItem('cart') === null) {
+      setCart(newProduct)
+      localStorage.setItem('cart', JSON.stringify(newProduct));
     } else {
-      setCart([...cart, ...newProduct]);
-      //Push new product to localstorage
-      const stringItem = JSON.stringify([...cart, ...newProduct]);
-      localStorage.setItem('cart', stringItem);
+      const existingItem = cart?.find(product => product.productID == newProduct[0].productID)
+
+      //If product already exists in cart increment quantity else add product
+      if (existingItem) {
+        //Finds the array index which id is equal to exsisting product, then increments the quantity with 1
+        for (var i = 0; i < cart.length; i++) {
+          if (cart[i].productID === existingItem.productID) {
+            cart[i].quantity += 1
+          }
+        }
+        const stringItem = JSON.stringify([...cart]);
+        localStorage.setItem('cart', stringItem);
+      } else {
+        setCart([...cart, ...newProduct]);
+        //Push new product to localstorage
+        const stringItem = JSON.stringify([...cart, ...newProduct]);
+        localStorage.setItem('cart', stringItem);
+      }
     }
   };
 

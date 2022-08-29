@@ -25,8 +25,7 @@ function Cart() {
         localStorage.setItem('cart', stringItem);
       }
     }
-  }, [incrementCart, cart, selectedCartRow]);
-
+  }, [incrementCart]);
 
   useEffect(() => {
     //Get products from cart
