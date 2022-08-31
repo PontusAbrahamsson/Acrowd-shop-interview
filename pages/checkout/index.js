@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import Input from "../../componenets/input/input";
 import Button from "../../componenets/button/button";
 import axios from "axios";
+import { useRouter } from 'next/router';
 
 function Checkout() {
+  const router = useRouter();
   const [cart, setCart] = useState([]);
   const [order, setOrder] = useState();
   const [orderError, setOrderError] = useState();
@@ -95,20 +97,30 @@ function Checkout() {
           console.log('Process order', response)
           setPending(true)
           setOrder(response.data)
+          alert('Order succesfuly placed')
+          router.push('/')
           return response
         })
         .catch(err => {
           console.log('Order error: ', err)
           setOrderError(err)
+
         })
     }
   }
 
+  if (cart === null || cart.length == 0) {
+    return (
+      <div style={{ height: "100vh", width: "100vw", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "-65px", textAlign: "center" }}>
+        <span>Checkout is emty <b style={{ cursor: "pointer" }} onClick={() => router.back()}>Go back</b></span>
+      </div>
+    )
+  }
 
   return (
     <div className="checkout">
       <div className="checkoutTitleBox">
-        <h1 className="checkoutTitle">Cart</h1>
+        <h1 className="checkoutTitle">Checkout</h1>
       </div>
       <div className="inptContainer">
         <Input
@@ -177,7 +189,10 @@ function Checkout() {
         </ul>
       </div>
       <div className="submitBtnContainer" onClick={processOrder}>
-        <Button text='Confirm Purchase' />
+        <Button
+          text='Confirm Purchase'
+          disabled={false}
+        />
       </div>
     </div >
   )

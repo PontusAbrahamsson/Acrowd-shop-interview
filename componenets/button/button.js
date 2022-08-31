@@ -1,11 +1,10 @@
-import { useState } from "react";
 
-function Button({ text }) {
-  const [disabled, setDisabled] = useState(true)
+
+function Button({ text, disabled }) {
 
   return (
-    <button className="button" type="submit">
-      {text}
+    <button className={disabled === false ? 'button' : 'disabledButton'} type="submit" disabled={disabled}>
+      {disabled === false ? text : 'Adding to cart...'}
     </button>
   )
 }

@@ -1,9 +1,9 @@
 header {
   height: 65px;
-  width: 100%;
   border-bottom: 1px solid grey;
   background-color: #ffff;
   display: flex;
+  align-items: center;
   top: 0;
   padding: 0 25px;
 
@@ -30,10 +30,19 @@ header {
     }
   }
 
+  .hemburgerMenuModal {
+    display: none;
+  }
+
   .cartContainer {
     align-items: center;
     display: flex;
     margin-left: auto;
+    position: relative;
+
+    .hamburgerMenu {
+      display: none;
+    }
 
     .cartCircle {
       margin-top: 8px;
@@ -49,6 +58,66 @@ header {
 
       .cartQuantity {
         color: #5D4FFB;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 676px) {
+
+
+  header {
+
+    .cartContainer {
+
+      .hamburgerMenu {
+        display: block;
+        margin-top: 3px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    }
+
+    .navBar {
+      display: none;
+
+      .navItem {
+        display: none;
+      }
+    }
+
+    .hemburgerMenuModal {
+      height: 100%;
+      width: 100%;
+      z-index: 100;
+      background-color: rgba(31, 31, 31, 0.966);
+      position: absolute;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-direction: column;
+      box-sizing: border-box;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+
+      .exitModalIcon {
+        fill: white;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 25px;
+      }
+
+      a {
+
+        h4 {
+          color: white;
+          font-weight: 400;
+          font-size: 28px;
+        }
       }
     }
   }

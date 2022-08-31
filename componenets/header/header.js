@@ -10,6 +10,18 @@ function Header() {
     setCartQuantity(JSON.parse(getLocalCart));
   }, [])
 
+  function openModal() {
+    const modal = document.getElementsByClassName('hemburgerMenuModal')[0]
+    modal.style.display = 'flex'
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const modal = document.getElementsByClassName('hemburgerMenuModal')[0]
+    modal.style.display = 'none'
+    document.body.style.overflow = '';
+  }
+
   return (
     <header>
 
@@ -22,7 +34,7 @@ function Header() {
       </div>
 
       <nav className="navBar">
-        <Link href="/shop">
+        <Link href="/">
           <a>
             <h4 className="navItem">Shop</h4 >
           </a>
@@ -39,7 +51,27 @@ function Header() {
         </Link>
       </nav>
 
+      <div className="hemburgerMenuModal">
+        <svg onClick={closeModal} className="exitModalIcon" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m10.583 30.417-1-1L19 20l-9.417-9.417 1-1L20 19l9.417-9.417 1 1L21 20l9.417 9.417-1 1L20 21Z" /></svg>
+        <Link href="/" >
+          <a>
+            <h4 onClick={closeModal} className="navItem">Shop</h4>
+          </a>
+        </Link>
+        <Link href="/shop/men">
+          <a>
+            <h4 onClick={closeModal} className="navItem">Men</h4>
+          </a>
+        </Link>
+        <Link href="/shop/women">
+          <a>
+            <h4 onClick={closeModal} className="navItem">Women</h4>
+          </a>
+        </Link>
+      </div>
+
       <div className="cartContainer">
+        <svg onClick={openModal} className="hamburgerMenu" xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M5.833 28.792v-1.417h28.334v1.417Zm0-8.084v-1.416h28.334v1.416Zm0-8.083v-1.417h28.334v1.417Z" /></svg>
         {cartQuantity && cartQuantity.length !== 0 ?
           <Link href="/cart">
             <a >

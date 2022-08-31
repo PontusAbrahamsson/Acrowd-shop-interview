@@ -2,8 +2,10 @@ import CartRow from "../../componenets/cartRow/cartRow";
 import { useEffect, useState } from "react";
 import Button from "../../componenets/button/button";
 import Link from "next/dist/client/link";
+import { useRouter } from 'next/router';
 
 function Cart() {
+  const router = useRouter()
   const [cart, setCart] = useState([]);
   const [removeProductID, setRemoveProductID] = useState(null);
   //Cart quantity number
@@ -41,8 +43,15 @@ function Cart() {
       localStorage.setItem('cart', JSON.stringify(updatedCart))
       setRemoveProductID(null)
     };
-
   }, [removeProductID]);
+
+  if (cart === null || cart.length == 0) {
+    return (
+      <div style={{ height: "100vh", width: "100vw", display: "flex", justifyContent: "center", alignItems: "center", marginTop: "-65px", textAlign: "center" }}>
+        <span>Cart is emty <b style={{ cursor: "pointer" }} onClick={() => router.back()}>Go back</b></span>
+      </div>
+    )
+  }
 
   return (
     <div className="cart">
@@ -87,7 +96,8 @@ function Cart() {
         <Link href='/checkout'>
           <a>
             <Button
-              text={'Proceed to checkout'}
+              text='Proceed to checkout'
+              disabled={false}
             />
           </a>
         </Link>

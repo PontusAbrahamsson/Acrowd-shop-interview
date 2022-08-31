@@ -1,47 +1,110 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import React from 'react';
+import Link from 'next/dist/client/link';
+import ProductCard from '../componenets/productCard/productCard';
+import { useRouter } from "next/router";
 
-export default function Home() {
+function Shop({ productsData, parentCategories, productLength }) {
+  const router = useRouter()
+  const { page } = router.query
+
+  const paginatedPages = Math.ceil(productLength / 8.0)
+
+  for (var i = 0; i < parentCategories.length; i++) {
+    if (parentCategories[i].slug === 'uncategorized') {
+      parentCategories.splice(i, 1)
+    }
+  };
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Acrowd Interview Test</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-        <link rel="preconnect" href="https://fonts.gstatic.com"></link>
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://acrowd.se">Acrowd!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by reading the{' '}
-          <code className={styles.code}>README.md</code>{' '}file
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://github.com/Black-Pixel-AB/shop-interview" target="_blank" rel="noreferrer" className={styles.card}>
-            <h2>Instructions &rarr;</h2>
-            <p>Check out the instructions for the project!</p>
-          </a>
-
-
-          <a
-            href="https://www.figma.com/file/z7jZJGxVyjScHaNlVVlh6d/Shop-Interview?node-id=0%3A1"
-            target="_blank"
-            rel="noreferrer"
-            className={styles.card}
-          >
-            <h2>Design &rarr;</h2>
-            <p>
-              The store is based on the attached design
-            </p>
-          </a>
+    <div className='shopWrapper'>
+      <div className='shop'>
+        <div className='shopTitleContainer'>
+          <h1 className='shopTitle' style={{ marginTop: '79px' }}>Shop</h1>
         </div>
-      </main>
+        <nav className='navigationMenu'>
+          <ul className='navUl'>
+            {parentCategories.map((parentCategory, index) => {
+
+              return (
+                <Link key={index} href={`/shop/${parentCategory.slug}`}>
+                  <a>
+                    <li>
+                      <h2 className='navItem'> {parentCategory.name}</h2>
+                    </li>
+                  </a>
+                </Link>
+              )
+            })}
+          </ul>
+        </nav>
+
+        <div className='productContainer'>
+          {productsData.map((product, index) => {
+
+            if (product.status !== 'publish') {
+              return null
+            }
+            return (
+              <ProductCard
+                key={index}
+                name={product.name}
+                salePrice={product.price_html}
+                price={product.price}
+                onSale={product.on_sale}
+                featuredImage={product.images[0].src}
+                slug={product.slug}
+              />
+            )
+
+          })}
+        </div>
+        <div className='btnContainer' >
+          {page !== undefined && page >= 2 &&
+            <Link href={`?page=${Number(page) - 1}`}>
+              <a>
+                <span>{'< Prev'}</span>
+              </a>
+            </Link>
+          }
+          {page != paginatedPages &&
+            <Link href={`?page=${page === undefined ? Number(2) : Number(page) + 1}`}>
+              <a>
+                <div>{'Next >'}</div>
+              </a>
+            </Link>
+          }
+        </div>
+      </div>
     </div>
   )
 }
+
+export async function getServerSideProps(context) {
+  const { res } = context;
+  res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`)
+  const { page } = context.query
+  const offset = Number(page * 8) - 8
+
+  //Get first page of products
+  const productsRes = await fetch(`${process.env.BASE_URL}/wp-json/wc/v3/products?consumer_key=${process.env.CONSUMER_KEY}&consumer_secret=${process.env.CONSUMER_SECRET}&orderby=id&per_page=8&offset=${page !== undefined ? offset : 0}`);
+  const productsData = await productsRes.json();
+
+  //Get all parent categories
+  const parentCategoriesRes = await fetch(`${process.env.BASE_URL}/wp-json/wc/v3/products/categories?consumer_key=${process.env.CONSUMER_KEY}&consumer_secret=${process.env.CONSUMER_SECRET}&parent=0`);
+  const parentCategories = await parentCategoriesRes.json();
+
+  //Get all products to calculate length for pagination
+  const allProductsRes = await fetch(`${process.env.BASE_URL}/wp-json/wc/v3/products?consumer_key=${process.env.CONSUMER_KEY}&consumer_secret=${process.env.CONSUMER_SECRET}&per_page=100`);
+  const productsLength = await allProductsRes.json();
+
+
+  return {
+    props: {
+      productsData,
+      parentCategories,
+      'productLength': productsLength.length
+    }
+  }
+}
+
+export default Shop;

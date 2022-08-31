@@ -11,26 +11,34 @@
 
     .imagesContainer {
       max-width: 580px;
+      width: 100%;
       height: auto;
       display: flex;
       flex-direction: column;
 
       .featuredImgBox {
         height: 580px;
-        width: 580px;
+        width: 100%;
+        max-width: 580px;
         position: relative;
+
+        .imgCover {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
       }
 
       .imageGalleryContainer {
         margin-top: 5px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20%, max-content));
+        display: flex;
+        flex-wrap: wrap;
         gap: 5px;
         width: 100%;
 
         .galleryImgBox {
           height: 100px;
-          max-width: 100%;
+          width: 115px;
           position: relative;
           cursor: pointer;
         }
@@ -149,8 +157,9 @@
       align-items: center;
 
       .featuredImgBox {
-        max-width: auto;
-        height: auto;
+        height: 580px;
+        max-width: 580px;
+        position: relative;
       }
 
       .infoBox {
