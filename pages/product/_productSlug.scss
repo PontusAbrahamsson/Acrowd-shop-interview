@@ -17,15 +17,17 @@
       flex-direction: column;
 
       .featuredImgBox {
-        height: 580px;
-        width: 100%;
-        max-width: 580px;
+        // width: 580px;
+        padding-top: 90%;
+        overflow: hidden;
         position: relative;
 
         .imgCover {
           width: 100%;
-          height: auto;
-          display: block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
         }
       }
 
@@ -155,12 +157,8 @@
     .productInfoContainer {
       flex-direction: column;
       align-items: center;
-
-      .featuredImgBox {
-        height: 580px;
-        max-width: 580px;
-        position: relative;
-      }
+      width: 100%;
+      height: auto;
 
       .infoBox {
         max-width: 580px;
@@ -168,11 +166,5 @@
         margin-top: 25px;
       }
     }
-  }
-}
-
-@media screen and (max-width: 676px) {
-  .singleProduct {
-    padding: 0 15px;
   }
 }

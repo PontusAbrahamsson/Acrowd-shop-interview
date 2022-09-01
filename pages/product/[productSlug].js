@@ -90,7 +90,8 @@ function SingleProduct({ singleProduct, relatedProducts }) {
 
         <div className="imagesContainer">
           <div className="featuredImgBox">
-            <Image layout="fill" priority="true" className="imgCover" src={featuredImage.length <= 0 ? singleProduct[0].images[0].src : featuredImage} alt="Product image" />
+            {/* <Image layout="fill" priority="true" className="imgCover" src={featuredImage.length <= 0 ? singleProduct[0].images[0].src : featuredImage} alt="Product image" /> */}
+            <img className="imgCover" src={featuredImage.length <= 0 ? singleProduct[0].images[0].src : featuredImage} alt="Product image" />
           </div>
           <div className="imageGalleryContainer">
             {singleProduct[0].images.map((image, index) => {
